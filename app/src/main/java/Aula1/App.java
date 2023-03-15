@@ -28,13 +28,15 @@ try {
      while(true){
          if(ui.checkCanStep()){
               c.moveto(Constants.DEFAULT_CREATURE_SPEED/4,ui.getMovementDirections()[0], ui.getMovementDirections()[1]);
-              System.out.println("Step start!");
-              ui.stopStep();
+             
+              
          }
-         //c.moveto(0,0,10000);
-         System.out.println("Step end!");
+         else{
+         c.moveto(0,ui.getMovementDirections()[0], ui.getMovementDirections()[1]);
+         
+         }
      }
-     //c.move(1,1,-2);
+    
     
     } catch (CommandExecException e) {
      System.out.println("Erro capturado"); 

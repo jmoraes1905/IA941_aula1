@@ -18,87 +18,6 @@ import javax.swing.JPanel;
  *
  * @author egodjoe
  */
-/*public class UI extends JFrame implements ActionListener {
-    
-    JButton buttonN = new JButton();
-    JButton buttonE = new JButton();
-    JButton buttonS = new JButton();
-    JButton buttonW = new JButton();
-    
-    public double[] moveDirection = new double[2];
-    private boolean canStep = false;
-    
-    public UI(){
-        
-        
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
-        this.setSize(500,500);
-        this.setVisible(true);
-       
-        
-        
-        buttonN.setBounds(50,100,50,50);
-        buttonN.addActionListener(this);
-        buttonN.setText("North");
-        
-        //buttonE.setBounds(100,50,50,50);
-        buttonN.addActionListener(this);
-        buttonN.setText("East");
-       
-           
-        //buttonS.setBounds(50,0,50,50);
-        buttonN.addActionListener(this);
-        buttonN.setText("South");
-       
-        
-        //buttonW.setBounds(0,50,50,50);
-        buttonN.addActionListener(this);
-        buttonN.setText("West");
-       
-        
-        this.add(buttonN);
-        this.add(buttonE);
-        this.add(buttonS);
-        this.add(buttonW);
-        
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        this.canStep = true;
-        if(e.getSource()==buttonN){
-            this.moveDirection[0] = 0;
-            this.moveDirection[1] = -10000;
-            System.out.println("Pressed");
-        }
-        
-        else if(e.getSource() == buttonE){
-            moveDirection[0] = 10000;
-            moveDirection[1] = 0;
-            System.out.println("Pressed");
-        }
-         else if(e.getSource() == buttonS){
-            moveDirection[0] = 0;
-            moveDirection[1] = 10000;
-           System.out.println("Pressed");
-        }
-         else if(e.getSource() == buttonW){
-            moveDirection[0] = -10000;
-            moveDirection[1] = 0;
-            System.out.println("Pressed");
-        }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    public void stopStep(){
-        this.canStep=false;
-    }
-    
-    public boolean checkCanStep(){
-        return this.canStep;
-    }
-}*/
 public class UI implements ActionListener {
     
     private JLabel label = new JLabel("Movement Directions     ");
@@ -108,6 +27,7 @@ public class UI implements ActionListener {
     JButton buttonE = new JButton();
     JButton buttonS = new JButton();
     JButton buttonW = new JButton();
+    JButton stopButton = new JButton();
 
     private double[] moveDirection = new double[2];
     private boolean canStep = false;
@@ -134,6 +54,10 @@ public class UI implements ActionListener {
         buttonW.addActionListener(this);
         buttonW.setText("West");
 
+        stopButton.setBounds(0,50,50,50);
+        stopButton.addActionListener(this);
+        stopButton.setText("Stop Moving");
+        
         // the panel with the button and text
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(300, 300, 100, 300));
@@ -142,6 +66,7 @@ public class UI implements ActionListener {
         panel.add(buttonE);
         panel.add(buttonS);
         panel.add(buttonW);
+        panel.add(stopButton);
         panel.add(label);
 
         // set up the frame and display it
@@ -158,30 +83,35 @@ public class UI implements ActionListener {
         if(e.getSource()==buttonN){
             this.moveDirection[0] = 0;
             this.moveDirection[1] = -10000;
-            System.out.println("Pressed");
+            this.canStep = true;
+            
         }
         
         else if(e.getSource() == buttonE){
             moveDirection[0] = 10000;
             moveDirection[1] = 0;
-            System.out.println("Pressed");
+            this.canStep = true;
+            
         }
          else if(e.getSource() == buttonS){
             moveDirection[0] = 0;
             moveDirection[1] = 10000;
-           System.out.println("Pressed");
+            this.canStep = true;
+          
         }
          else if(e.getSource() == buttonW){
             moveDirection[0] = -10000;
             moveDirection[1] = 0;
-            System.out.println("Pressed");
+            this.canStep = true;
+            
         }
         
-        this.canStep = true;
-    }
-
-    public void stopStep(){
-        this.canStep=false;
+         else if(e.getSource()==stopButton){
+             this.canStep = false;
+            
+         }
+        
+        
     }
     
     public boolean checkCanStep(){
